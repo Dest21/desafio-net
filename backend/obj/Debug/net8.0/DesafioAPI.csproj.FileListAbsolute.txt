@@ -1,7 +1,0 @@
-C:\Users\d3std\Desktop\jack\desafio-net\backend\obj\Debug\net8.0\DesafioAPI.csproj.AssemblyReference.cache
-C:\Users\d3std\Desktop\jack\desafio-net\backend\obj\Debug\net8.0\DesafioAPI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\d3std\Desktop\jack\desafio-net\backend\obj\Debug\net8.0\DesafioAPI.AssemblyInfoInputs.cache
-C:\Users\d3std\Desktop\jack\desafio-net\backend\obj\Debug\net8.0\DesafioAPI.AssemblyInfo.cs
-C:\Users\d3std\Desktop\jack\desafio-net\backend\obj\Debug\net8.0\DesafioAPI.csproj.CoreCompileInputs.cache
-C:\Users\d3std\Desktop\jack\desafio-net\backend\obj\Debug\net8.0\DesafioAPI.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\d3std\Desktop\jack\desafio-net\backend\obj\Debug\net8.0\DesafioAPI.MvcApplicationPartsAssemblyInfo.cache

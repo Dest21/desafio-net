@@ -56,16 +56,20 @@ namespace DesafioAPI.Services
             if (await EmailExistsAsync(userDto.Email))
                 throw new InvalidOperationException("Email already exists");
 
+            var currentUtc = DateTime.UtcNow;
             var user = new User
             {
                 Email = userDto.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
                 FirstName = userDto.FirstName,
                 LastName = userDto.LastName,
-                BirthDate = userDto.BirthDate,
+                BirthDate = userDto.BirthDate?.Kind == DateTimeKind.Unspecified ? 
+                    DateTime.SpecifyKind(userDto.BirthDate.Value, DateTimeKind.Utc) : userDto.BirthDate,
                 Country = userDto.Country,
                 Languages = userDto.Languages,
-                IsActive = userDto.IsActive
+                IsActive = userDto.IsActive,
+                CreatedAt = currentUtc,
+                UpdatedAt = currentUtc
             };
 
             _context.Users.Add(user);
@@ -86,7 +90,8 @@ namespace DesafioAPI.Services
             user.Email = userDto.Email;
             user.FirstName = userDto.FirstName;
             user.LastName = userDto.LastName;
-            user.BirthDate = userDto.BirthDate;
+            user.BirthDate = userDto.BirthDate?.Kind == DateTimeKind.Unspecified ? 
+                DateTime.SpecifyKind(userDto.BirthDate.Value, DateTimeKind.Utc) : userDto.BirthDate;
             user.Country = userDto.Country;
             user.Languages = userDto.Languages;
             user.IsActive = userDto.IsActive;
