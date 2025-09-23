@@ -1,0 +1,10 @@
+{
+  "email": "admin@test.com",
+  "firstName": "Admin",
+  "lastName": "User",
+  "birthDate": "1990-01-01",
+  "country": "España",
+  "languages": ["Español", "Inglés"],
+  "password": "Admin123",
+  "confirmPassword": "Admin123"
+}
