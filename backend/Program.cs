@@ -82,20 +82,28 @@ using (var scope = app.Services.CreateScope())
         // Create default user if not exists
         if (!context.Users.Any(u => u.Email == "admin@test.com"))
         {
+            Console.WriteLine("[INIT] Creating default admin user...");
             var defaultUser = new User
             {
                 Email = "admin@test.com",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!"),
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("password"),
                 FirstName = "Admin",
                 LastName = "User",
-                BirthDate = new DateTime(1990, 1, 1),
+                BirthDate = DateTime.SpecifyKind(new DateTime(1990, 1, 1), DateTimeKind.Utc),
                 Country = "España",
                 Languages = new[] { "Español", "Inglés" },
-                IsActive = true
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
             };
             
             context.Users.Add(defaultUser);
             context.SaveChanges();
+            Console.WriteLine($"[INIT] Default admin user created with hash: {defaultUser.PasswordHash}");
+        }
+        else
+        {
+            Console.WriteLine("[INIT] Default admin user already exists");
         }
     }
     catch (Exception ex)

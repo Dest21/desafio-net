@@ -15,20 +15,6 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insertar usuario de prueba
--- Password: password (hasheado con BCrypt.Net)
-INSERT INTO users (email, password_hash, first_name, last_name, birth_date, country, languages, is_active)
-VALUES (
-    'admin@test.com',
-    '$2a$11$UeAJYGQJKLxLVIi8eYEZNO3nNXo.5zBVjKdKZdxmHQNn/vYB2xYtG',
-    'Admin',
-    'User',
-    '1990-01-01',
-    'España',
-    ARRAY['Español', 'Inglés'],
-    true
-) ON CONFLICT (email) DO NOTHING;
-
 -- Crear índices para mejorar el rendimiento
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_users_active ON users(is_active);

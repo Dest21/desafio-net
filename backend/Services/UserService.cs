@@ -26,10 +26,23 @@ namespace DesafioAPI.Services
 
         public async Task<User?> AuthenticateAsync(string email, string password)
         {
+            Console.WriteLine($"[AUTH] Attempting login for email: {email}");
+            
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == email && u.IsActive);
 
-            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+            if (user == null)
+            {
+                Console.WriteLine($"[AUTH] User not found or inactive for email: {email}");
+                return null;
+            }
+
+            Console.WriteLine($"[AUTH] User found: {user.Email}, checking password...");
+            var isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
+            Console.WriteLine($"[AUTH] Password valid: {isPasswordValid}");
+            Console.WriteLine($"[AUTH] Password hash: {user.PasswordHash}");
+
+            if (!isPasswordValid)
                 return null;
 
             return user;

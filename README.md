@@ -31,7 +31,7 @@ docker-compose up --build
 
 ### Usuario de prueba
 - **Email**: admin@test.com
-- **Password**: Admin123!
+- **Password**: password
 
 ## 📚 Casos Individuales
 
